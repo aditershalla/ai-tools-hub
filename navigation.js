@@ -1,6 +1,27 @@
 "use strict";
 // V11: a single accessible quick menu shared by all public pages.
 (() => {
+  // V12: light by default, with an explicit per-visitor saved preference.
+  const themeKey = 'ai-tools-hub-theme';
+  const root = document.documentElement;
+  let currentTheme = 'light';
+  try { currentTheme = window.localStorage.getItem(themeKey) === 'dark' ? 'dark' : 'light'; } catch (_) {}
+  root.dataset.theme = currentTheme;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(theme) {
+    currentTheme = theme;
+    root.dataset.theme = theme;
+    if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#0d1120' : '#f8faff');
+    try { window.localStorage.setItem(themeKey, theme); } catch (_) {}
+    const toggle = document.querySelector('.site-header .theme-toggle');
+    if (toggle) {
+      const enabled = theme === 'dark';
+      toggle.setAttribute('aria-checked', String(enabled));
+      toggle.setAttribute('aria-label', enabled ? 'Dark mode on. Switch to light mode' : 'Dark mode off. Switch to dark mode');
+      toggle.title = enabled ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+  }
+  applyTheme(currentTheme);
   const header = document.querySelector('.site-header');
   const inner = header?.querySelector('.header-inner');
   if (!header || !inner) return;
@@ -17,6 +38,19 @@
   });
 
   header.querySelectorAll('.header-action').forEach(a => a.remove());
+  // Shared switch appears beside Top 100 on desktop and beside the menu on mobile.
+  if (!inner.querySelector('.theme-toggle')) {
+    const themeButton = document.createElement('button');
+    themeButton.type = 'button';
+    themeButton.className = 'theme-toggle';
+    themeButton.setAttribute('role', 'switch');
+    themeButton.innerHTML = '<span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.7 14.7A9 9 0 0 1 9.3 3.3 9 9 0 1 0 20.7 14.7Z"/></svg></span><span class="theme-toggle-thumb" aria-hidden="true"></span>';
+    const actions = inner.querySelector('.header-actions');
+    const menuButton = actions?.querySelector('.mobile-menu-toggle');
+    if (actions) actions.insertBefore(themeButton, menuButton || null);
+    themeButton.addEventListener('click', () => applyTheme(currentTheme === 'dark' ? 'light' : 'dark'));
+    applyTheme(currentTheme);
+  }
   const button = inner.querySelector('.mobile-menu-toggle');
   if (!button) return;
   button.setAttribute('aria-controls', 'site-quick-menu');
