@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Mechanical AI robot head">
+  <rect width="64" height="64" rx="15" fill="#111319"/>
+  <path d="M32 8v7" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="7" r="2.7" fill="#FAFAFA"/>
+  <path d="M19 18H45C49.4183 18 53 21.5817 53 26V43C53 48.5228 48.5228 53 43 53H21C15.4772 53 11 48.5228 11 43V26C11 21.5817 14.5817 18 19 18Z" stroke="#FFFFFF" stroke-width="3.3"/>
+  <path d="M11 30H6V40H11M53 30H58V40H53" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M20 31L27 33M44 31L37 33" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M27 43H37" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M23 51V57M41 51V57" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M18 22L22 22M42 22L46 22" stroke="#797B82" stroke-width="1.4" stroke-linecap="round"/>
+</svg>
