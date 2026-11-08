@@ -370,3 +370,41 @@ html{scroll-padding-top:95px}
 .practical-example{border:1px solid rgba(113,85,250,.22);background:linear-gradient(135deg,#fff,#f7f5ff)}
 .practical-example p{overflow-wrap:anywhere}
 .detail-missing a{min-height:44px;align-items:center;justify-content:center}
+
+/* V7: small SaaS refinements; keeps existing colour palette and layout. */
+.control-select-label{display:flex;flex-direction:column;gap:5px;font-weight:750;font-size:11px;color:#61547f;white-space:nowrap}
+.filter-select{min-height:44px;max-width:210px;min-width:148px;background:#fff;color:#243351;border:1px solid #cfc9f1;border-radius:10px;padding:9px 12px;font-size:13px;cursor:pointer}
+.filter-select:focus-visible{outline:3px solid #7556ea;outline-offset:2px}
+.top100-controls{flex-wrap:wrap;align-items:center;gap:12px}
+.top100-controls .top100-filters{flex:1 1 100%;max-width:100%}
+.top100-controls .top100-search{min-width:min(270px,100%)}
+.verified-disclaimer{max-width:900px;font-size:12px;line-height:1.7;color:#646f88;margin:12px 0 23px}
+.plan-tag{display:inline-block;align-self:flex-start;font-size:10px;letter-spacing:.1px;padding:5px 8px;border-radius:6px;background:#f5f6fa;color:#7d8194;border:1px solid #eaebf3}
+.plan-tag.plan-checked{background:#f1edff;color:#5846cd;border-color:#e3dcff}
+.top100-card .plan-tag{margin:4px 0 0}.catalog-row .plan-tag{margin:9px 0 0}
+.catalog-controls{display:flex;gap:13px;flex-wrap:wrap;margin:22px 0 15px;align-items:end}
+.guides-teaser{background:#fff;border-top:1px solid #ece8fc}
+.guide-feature-grid,.guide-index-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.guide-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.guide-feature{display:block;background:linear-gradient(135deg,#fff,#f7f4ff);border:1px solid #e5def9;border-radius:16px;padding:27px;color:#222c4d;box-shadow:0 6px 25px #45338010;transition:transform .16s ease,box-shadow .16s ease}
+.guide-feature:hover,.guide-feature:focus-within{transform:translateY(-3px);box-shadow:0 16px 35px #5a43b32c}
+.guide-feature>span{font-size:11px;letter-spacing:1.5px;color:#6851d8;font-weight:850}
+.guide-feature h2,.guide-feature h3{font-size:23px;line-height:1.25;letter-spacing:-.5px;margin:15px 0}
+.guide-feature p{color:#5e6b84;font-size:13px}
+.guide-feature b,.guide-text-link{color:#6350d3;font-size:13px;font-weight:800}
+.guide-layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(265px,.8fr);align-items:start;gap:20px}
+.guide-main,.guide-side{display:grid;gap:20px;min-width:0}
+.guide-steps{list-style:decimal;margin:0;padding-left:23px}
+.guide-steps li{padding:8px 0 16px;color:#5b6480}
+.guide-steps h3{color:#233151;font-size:17px;margin:0 0 8px}
+.guide-steps p{font-size:14px;line-height:1.8;margin:0}
+.guide-tool-list{display:grid;gap:12px}
+.guide-tool{padding:12px 0;border-bottom:1px solid #e6e4f6;display:flex;flex-direction:column;gap:6px}
+.guide-tool>a{color:#5c49c7;font-size:15px;font-weight:800}
+.guide-tool small{font-size:11px;color:#657189;line-height:1.6}
+.guide-tool small a{text-decoration:underline;text-underline-offset:2px}
+.verified-price{background:#f8f5ff}
+@media(max-width:900px){.guide-feature-grid,.guide-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-layout{grid-template-columns:1fr}.nav{gap:19px}}
+@media(max-width:660px){.guide-feature-grid,.guide-index-grid{grid-template-columns:1fr}.guide-feature{padding:24px}.catalog-controls{display:grid;grid-template-columns:1fr 1fr}.filter-select{max-width:100%;width:100%;min-width:0}.top100-controls .top100-search{width:100%;max-width:none}.top100-controls .control-select-label{flex:1 1 138px;min-width:0}.directory-controls{flex-wrap:wrap}.directory-controls .control-select-label{flex:1 1 140px}.guide-layout .detail-panel{padding:23px}}
+@media(max-width:380px){.catalog-controls{grid-template-columns:1fr}.guide-feature h2,.guide-feature h3{font-size:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.guide-feature,.top100-card,.directory-card,.catalog-row{transition:none!important;transform:none!important}}
