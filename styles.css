@@ -364,3 +364,9 @@ html{scroll-padding-top:95px}
 .output-box{overflow-wrap:anywhere;word-break:break-word}
 .info-hero,.detail-panel{overflow-wrap:anywhere}
 .footer-links{row-gap:10px}
+
+/* V6 accessibility and content refinements (preserves the existing look). */
+.detail-error{color:#a72546;font-weight:700;margin:0 0 12px}
+.practical-example{border:1px solid rgba(113,85,250,.22);background:linear-gradient(135deg,#fff,#f7f5ff)}
+.practical-example p{overflow-wrap:anywhere}
+.detail-missing a{min-height:44px;align-items:center;justify-content:center}
