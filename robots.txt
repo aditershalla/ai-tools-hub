@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://ai-tools-hub-882.pages.dev/sitemap.xml
