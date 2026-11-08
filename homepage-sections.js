@@ -11,9 +11,10 @@
    const slug=element.dataset.brandLogo;
    const known={chatgpt:'chatgpt.com',claude:'claude.ai',gemini:'gemini.google.com',perplexity:'perplexity.ai',deepseek:'deepseek.com'};
    if(!known[slug])return;
-   const img=document.createElement('img');img.src='https://www.google.com/s2/favicons?domain='+encodeURIComponent(known[slug])+'&sz=64';
-   img.alt='';img.width=32;img.height=32;img.loading='lazy';img.decoding='async';
-   img.onerror=()=>img.remove();element.prepend(img);
+   const img=document.createElement('img');img.alt='';img.width=32;img.height=32;img.loading='lazy';img.decoding='async';
+   img.onload=()=>element.replaceChildren(img); // Preserve the readable fallback letter until loading succeeds.
+   img.onerror=()=>{};
+   img.src='https://www.google.com/s2/favicons?domain='+encodeURIComponent(known[slug])+'&sz=64';
  });
  for(const button of document.querySelectorAll('.share-insight')){
    button.addEventListener('click',async()=>{
