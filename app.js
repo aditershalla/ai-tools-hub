@@ -15,6 +15,7 @@ const toolConfigs = [
 let activeCategory='All';
 let searchQuery='';
 let activeTool='ai';
+let top100Plan='all',top100Sort='editorial',directorySort='featured';
 let toastTimeout;
 const $ = (selector,root=document)=>root.querySelector(selector);
 const escapeHtml = (s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -30,6 +31,8 @@ function renderDirectory(){const list=directoryTools.filter(item=>{
   const words=`${item.name} ${item.category} ${item.description}`.toLowerCase();
   return categoryOk&&words.includes(searchQuery.toLowerCase());
 });
+if(directorySort==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
+if(directorySort==='category')list.sort((a,b)=>a.category.localeCompare(b.category)||a.name.localeCompare(b.name));
 $('#directory-grid').innerHTML=list.map(item=>`<article class="directory-card"><a class="card-overlay" href="${toolDetailsUrl(item)}" aria-label="Read about ${escapeHtml(item.name)}"></a><div class="card-head">${brandLogoMarkup(item,'tool-logo')}<button class="fav-button" data-favorite="${item.id}" type="button" aria-label="${favorites.has(item.id)?'Remove '+item.name+' from favorites':'Add '+item.name+' to favorites'}" aria-pressed="${favorites.has(item.id)}">${favorites.has(item.id)?'★':'☆'}</button></div><div><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.description)}</p></div><div class="card-foot"><span class="category-label">${escapeHtml(item.category)}</span><a class="card-link" href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeHtml(item.name)} official website (new tab)">Official site ↗</a></div><span class="card-detail-prompt" aria-hidden="true">View overview <span>→</span></span></article>`).join('');
 $('#results-count').textContent=list.length;
 $('#directory-empty').hidden=list.length!==0;
@@ -39,6 +42,7 @@ $('#directory-search').addEventListener('input',e=>{searchQuery=e.target.value.t
 $('#hero-search-form').addEventListener('submit',e=>{e.preventDefault();updateSearch($('#hero-search').value);$('#directory').scrollIntoView({behavior:'smooth'});});
 document.querySelectorAll('[data-search]').forEach(btn=>btn.addEventListener('click',()=>{const q=btn.dataset.search;$('#hero-search').value=q;updateSearch(q);$('#directory').scrollIntoView({behavior:'smooth'});}));
 $('#reset-filters').addEventListener('click',()=>{searchQuery='';activeCategory='All';$('#directory-search').value='';$('#hero-search').value='';renderCategories();renderDirectory();});
+const dirSortControl=$('#directory-sort');if(dirSortControl)dirSortControl.addEventListener('change',e=>{directorySort=e.target.value;renderDirectory();});
 $('#directory-count').textContent=directoryTools.length;
 $('#top100-stat').textContent=top100Tools.length;
 $('#featured-stat').textContent=directoryTools.length;
@@ -100,18 +104,32 @@ function renderTop100(){
     (top100Category==='All'||item.category===top100Category)&&
     `${item.name} ${item.description} ${item.category}`.toLowerCase().includes(top100Search)
   );
-  const shown=found.slice(0,top100Visible);
-  $('#top100-results').textContent=found.length;
+  // Filter only on plans independently confirmed via providers' documentation.
+  const selected=found.filter(item=>{
+    const plan=planFor(item);
+    if(top100Plan==='all')return true;
+    if(top100Plan==='unknown')return !plan;
+    if(top100Plan==='free')return !!plan&&plan.type==='freemium';
+    return !!plan&&plan.type===top100Plan;
+  });
+  if(top100Sort==='name')selected.sort((a,b)=>a.name.localeCompare(b.name));
+  if(top100Sort==='name-desc')selected.sort((a,b)=>b.name.localeCompare(a.name));
+  if(top100Sort==='category')selected.sort((a,b)=>a.category.localeCompare(b.category)||a.name.localeCompare(b.name));
+  const shown=selected.slice(0,top100Visible);
+  $('#top100-results').textContent=selected.length;
   $('#top100-grid').innerHTML=shown.map(item=>{
     const palette=top100Palette[item.category]||['#f0f1f7','#6d72a0'];
-    return `<article class="top100-card"><a class="card-overlay" href="${toolDetailsUrl(item)}" aria-label="Read about ${escapeHtml(item.name)}"></a><div class="top100-card-left"><span class="top100-rank">#${String(item.rank).padStart(2,'0')}</span>${brandLogoMarkup(item,'top100-logo')}</div><div class="top100-card-main"><div class="top100-card-line"><h3>${escapeHtml(item.name)}</h3><span class="top100-category">${escapeHtml(item.category)}</span></div><p>${escapeHtml(item.description)}</p><div class="top100-card-bottom"><span class="top100-details-label">Overview →</span><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(item.name)} official website in a new tab">Official site ↗</a></div></div></article>`;
+    const plan=planFor(item);
+    return `<article class="top100-card"><a class="card-overlay" href="${toolDetailsUrl(item)}" aria-label="Read about ${escapeHtml(item.name)}"></a><div class="top100-card-left"><span class="top100-rank">#${String(item.rank).padStart(2,'0')}</span>${brandLogoMarkup(item,'top100-logo')}</div><div class="top100-card-main"><div class="top100-card-line"><h3>${escapeHtml(item.name)}</h3><span class="top100-category">${escapeHtml(item.category)}</span></div><span class="plan-tag ${plan?'plan-checked':''}" title="${plan?'Verified from official pricing source on '+plan.checked:'Pricing not yet checked'}">${plan?(plan.type==='paid'?'Paid-only · checked':'Free plan · checked'):'Pricing not verified'}</span><p>${escapeHtml(item.description)}</p><div class="top100-card-bottom"><span class="top100-details-label">Overview →</span><a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(item.name)} official website in a new tab">Official site ↗</a></div></div></article>`;
   }).join('');
-  $('#top100-empty').hidden=found.length!==0;
-  $('#top100-more').hidden=found.length<=top100Visible;
-  $('#top100-more').textContent=`Show more tools (${Math.min(12,found.length-top100Visible)} of ${found.length-top100Visible} remaining) ↓`;
+  $('#top100-empty').hidden=selected.length!==0;
+  $('#top100-more').hidden=selected.length<=top100Visible;
+  $('#top100-more').textContent=`Show more tools (${Math.min(12,selected.length-top100Visible)} of ${selected.length-top100Visible} remaining) ↓`;
 }
 $('#top100-search').addEventListener('input',event=>{
   top100Search=event.target.value.trim().toLowerCase();top100Visible=12;renderTop100();
 });
 $('#top100-more').addEventListener('click',()=>{top100Visible+=12;renderTop100();});
+$('#top100-plan').addEventListener('change',e=>{top100Plan=e.target.value;top100Visible=12;renderTop100();});
+$('#top100-sort').addEventListener('change',e=>{top100Sort=e.target.value;top100Visible=12;renderTop100();});
 renderTop100Filters();renderTop100();
