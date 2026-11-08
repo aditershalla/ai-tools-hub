@@ -1,46 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f8faff" />
-  <meta name="description" content="Explore an independent AI tool overview, use cases and practical considerations before visiting the official website." />
-  <meta name="robots" content="noindex,follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="AI Tools Hub" />
-  <meta property="og:image" content="https://ai-tools-hub-882.pages.dev/assets/og-cover.jpg" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/styles.css" />
-  <title>AI tool overview | AI Tools Hub</title>
-  <script>
-    // Send older query-string links for featured products to their JavaScript-free HTML pages.
-    (function(){
-      const featured=new Set(['chatgpt','claude','gemini','perplexity','midjourney','canva','runway','elevenlabs','cursor','gamma','notebooklm','adobe-firefly','deepseek']);
-      const slug=new URLSearchParams(location.search).get('tool');
-      if(slug && featured.has(slug)) location.replace('/tools/'+encodeURIComponent(slug)+'/');
-    })();
-  </script>
-  <script defer src="/navigation.js"></script>
-  <script src="/top100-data.js" defer></script>
-  <script src="/directory-data.js" defer></script>
-  <script src="/brand-logos.js" defer></script>
-  <script src="/tool-detail.js" defer></script>
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#f8faff" name="theme-color"/>
+<meta content="Explore an independent AI tool overview, use cases and practical considerations before visiting the official website." name="description"/>
+<meta content="noindex,follow" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="AI Tools Hub" property="og:site_name"/>
+<meta content="https://ai-tools-hub-882.pages.dev/assets/og-cover.jpg" property="og:image"/>
+<link href="/assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/styles.css" rel="stylesheet"/>
+<title>AI tool overview | AI Tools Hub</title>
+<script>(function(){
+ const slug=new URLSearchParams(location.search).get('tool');
+ const all=new Set(["chatgpt", "gemini", "claude", "microsoft-copilot", "perplexity", "deepseek", "grok", "meta-ai", "qwen", "character-ai", "notebooklm", "google-ai-studio", "hugging-face", "poe", "mistral-le-chat", "kimi", "genspark", "manus", "you-com", "duck-ai", "midjourney", "canva", "adobe-firefly", "ideogram", "leonardo-ai", "recraft", "freepik", "photoroom", "remove-bg", "playground", "openart", "nightcafe", "civitai", "magnific", "krea", "runway", "pika", "kling-ai", "luma-ai", "heygen", "synthesia", "invideo-ai", "capcut", "descript", "veed", "opusclip", "fliki", "kaiber", "higgsfield", "topaz-video", "elevenlabs", "suno", "udio", "speechify", "murf", "adobe-podcast", "auphonic", "moises", "krisp", "otter-ai", "fireflies-ai", "cursor", "github-copilot", "replit", "windsurf", "lovable", "bolt-new", "v0", "tabnine", "sourcegraph-cody", "continue", "zed", "jetbrains-ai", "claude-code", "notion-ai", "grammarly", "quillbot", "jasper", "copy-ai", "writesonic", "wordtune", "rytr", "sudowrite", "deepl", "gamma", "beautiful-ai", "pitch", "slidesai", "napkin-ai", "elicit", "consensus", "scite", "scispace", "researchrabbit", "jenni-ai", "humata", "zapier-ai", "n8n", "bardeen", "durable"]);
+ if(slug && all.has(slug)) location.replace('/tools/'+encodeURIComponent(slug)+'/');
+})();</script>
+<script defer="" src="/navigation.js"></script>
+<script defer="" src="/top100-data.js"></script>
+<script defer="" src="/directory-data.js"></script>
+<script defer="" src="/brand-logos.js"></script>
+<script defer="" src="/tool-detail.js"></script>
+<meta content="AI tool overview | AI Tools Hub" property="og:title"/><meta content="Discover independent AI tool overviews and official service links." property="og:description"/></head>
 <body class="detail-body">
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header"><div class="shell header-inner">
-    <a class="brand" href="/" aria-label="AI Tools Hub home"><span class="brand-icon" aria-hidden="true">✳</span><span>AI<span class="brand-muted">Tools</span>Hub<span class="brand-dot">.</span></span></a>
-    <nav class="nav" id="global-nav" aria-label="Main navigation"><a href="/#directory">Discover AI</a><a href="/top-100/">Top 100</a><a href="/#free-tools">Free tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav>
-    <div class="header-actions"><a class="header-top100" href="/top-100/"><span aria-hidden="true">★</span> Top 100</a><a class="header-action" href="/#free-tools">Launch a tool ↗</a><button class="mobile-menu-toggle" type="button" aria-controls="global-nav" aria-expanded="false" aria-label="Open navigation menu">☰</button></div>
-  </div></header>
-  <main id="main">
-    <div class="detail-backdrop"><div class="shell">
-      <nav class="detail-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/top-100/">AI directory</a><span>›</span><span id="breadcrumb-current">Tool overview</span></nav>
-      <section id="detail-hero" class="detail-hero" aria-label="AI tool profile"><div class="detail-missing" id="tool-fallback" role="status"><h1>Explore this AI tool</h1><p>This interactive tool overview needs JavaScript to show the selected information. If it does not open, you can use the <a href="/top-100/">full directory</a> or read the <a href="/tools/deepseek/">DeepSeek overview</a> without JavaScript.</p><a class="detail-primary" href="/top-100/">Browse AI tools →</a></div></section>
-    </div></div>
-    <div id="detail-content" class="shell detail-content"></div>
-  </main>
-  <footer class="footer"><div class="shell footer-inner"><div><a class="brand" href="/"><span class="brand-icon" aria-hidden="true">✳</span><span>AI<span class="brand-muted">Tools</span>Hub<span class="brand-dot">.</span></span></a><p>An independent AI discovery directory and a small collection of practical tools.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/top-100/">Top 100</a><a href="/#free-tools">Free tools</a><a href="/guides/">Guides</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></nav></div><div class="shell footer-bottom">© 2026 AI Tools Hub. Independent directory; not affiliated with listed providers. <span>Read our <a href="/privacy/">privacy notice</a>.</span></div></footer>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="shell header-inner">
+<a aria-label="AI Tools Hub home" class="brand" href="/"><span aria-hidden="true" class="brand-icon">✳</span><span>AI<span class="brand-muted">Tools</span>Hub<span class="brand-dot">.</span></span></a>
+<nav aria-label="Main navigation" class="nav" id="global-nav"><a href="/#directory">Discover AI</a><a href="/top-100/">Top 100</a><a href="/#free-tools">Free tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav>
+<div class="header-actions"><a class="header-top100" href="/top-100/"><span aria-hidden="true">★</span> Top 100</a><a class="header-action" href="/#free-tools">Launch a tool ↗</a><button aria-controls="global-nav" aria-expanded="false" aria-label="Open navigation menu" class="mobile-menu-toggle" type="button">☰</button></div>
+</div></header>
+<main id="main">
+<div class="detail-backdrop"><div class="shell">
+<nav aria-label="Breadcrumb" class="detail-breadcrumb"><a href="/">Home</a><span>›</span><a href="/top-100/">AI directory</a><span>›</span><span id="breadcrumb-current">Tool overview</span></nav>
+<section aria-label="AI tool profile" class="detail-hero" id="detail-hero"><div class="detail-missing" id="tool-fallback" role="status"><h1>Explore this AI tool</h1><p>This interactive tool overview needs JavaScript to show the selected information. If it does not open, you can use the <a href="/top-100/">full directory</a> or read the <a href="/tools/deepseek/">DeepSeek overview</a> without JavaScript.</p><a class="detail-primary" href="/top-100/">Browse AI tools →</a></div></section>
+</div></div>
+<div class="shell detail-content" id="detail-content"></div>
+</main>
+<footer class="footer"><div class="shell footer-inner"><div><a class="brand" href="/"><span aria-hidden="true" class="brand-icon">✳</span><span>AI<span class="brand-muted">Tools</span>Hub<span class="brand-dot">.</span></span></a><p>An independent AI discovery directory and a small collection of practical tools.</p></div><nav aria-label="Footer navigation" class="footer-links"><a href="/top-100/">Top 100</a><a href="/#free-tools">Free tools</a><a href="/guides/">Guides</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms</a></nav></div><div class="shell footer-bottom">© 2026 AI Tools Hub. Independent directory; not affiliated with listed providers. <span>Read our <a href="/privacy/">privacy notice</a>.</span></div></footer>
 <script>
 // If a required script fails, never leave an indefinite loading screen.
 window.addEventListener('load', function() {

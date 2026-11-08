@@ -408,3 +408,19 @@ html{scroll-padding-top:95px}
 @media(max-width:660px){.guide-feature-grid,.guide-index-grid{grid-template-columns:1fr}.guide-feature{padding:24px}.catalog-controls{display:grid;grid-template-columns:1fr 1fr}.filter-select{max-width:100%;width:100%;min-width:0}.top100-controls .top100-search{width:100%;max-width:none}.top100-controls .control-select-label{flex:1 1 138px;min-width:0}.directory-controls{flex-wrap:wrap}.directory-controls .control-select-label{flex:1 1 140px}.guide-layout .detail-panel{padding:23px}}
 @media(max-width:380px){.catalog-controls{grid-template-columns:1fr}.guide-feature h2,.guide-feature h3{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.guide-feature,.top100-card,.directory-card,.catalog-row{transition:none!important;transform:none!important}}
+
+/* V8 — contact form: matched to existing light-violet cards */
+.contact-main-panel { width: 100%; }
+#contact-form { display:grid; gap: 14px; margin-top: 22px; }
+.contact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+#contact-form label:not(.contact-consent) { display:block; font-weight:650; font-size:.92rem; margin-bottom:6px; }
+#contact-form input:not([type=checkbox]),#contact-form select,#contact-form textarea { background:#fff; color:#17213c; width:100%; border:1px solid #cecce4; border-radius:12px; padding:12px 14px; font:inherit; min-width:0; }
+#contact-form textarea { resize:vertical; min-height:144px; }
+#contact-form input:focus-visible,#contact-form select:focus-visible,#contact-form textarea:focus-visible { outline:3px solid #9e86ff; outline-offset:2px; }
+.contact-consent { display:flex; gap:10px; align-items:flex-start; font-size:.9rem; line-height:1.55; }
+.contact-consent input { flex-shrink:0; margin-top:5px; }
+.contact-status { background:#f5f2ff; border:1px solid #e5deff; border-radius:12px; padding:12px; color:#503b83; margin:0; }
+.contact-status.contact-error { background:#fff0f0; color:#8b2525; border-color:#efb5b5; }
+.contact-submit:disabled { opacity:.53; cursor:not-allowed; box-shadow:none; }
+.contact-honeypot { position:absolute; left:-10000px; height:1px; overflow:hidden; }
+@media(max-width:600px){ .contact-grid { grid-template-columns:1fr; } #contact-form input:not([type=checkbox]),#contact-form select,#contact-form textarea { min-height:44px; } }
