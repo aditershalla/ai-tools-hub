@@ -12,6 +12,14 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
   <title>AI tool overview | AI Tools Hub</title>
+  <script>
+    // Send older query-string links for featured products to their JavaScript-free HTML pages.
+    (function(){
+      const featured=new Set(['chatgpt','claude','gemini','perplexity','midjourney','canva','runway','elevenlabs','cursor','gamma','notebooklm','adobe-firefly','deepseek']);
+      const slug=new URLSearchParams(location.search).get('tool');
+      if(slug && featured.has(slug)) location.replace('/tools/'+encodeURIComponent(slug)+'/');
+    })();
+  </script>
   <script defer src="/navigation.js"></script>
   <script src="/top100-data.js" defer></script>
   <script src="/directory-data.js" defer></script>
@@ -28,10 +36,17 @@
   <main id="main">
     <div class="detail-backdrop"><div class="shell">
       <nav class="detail-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/top-100/">AI directory</a><span>›</span><span id="breadcrumb-current">Tool overview</span></nav>
-      <section id="detail-hero" class="detail-hero" aria-label="AI tool profile"><div class="detail-loading">Loading tool information...</div></section>
+      <section id="detail-hero" class="detail-hero" aria-label="AI tool profile"><div class="detail-missing" id="tool-fallback" role="status"><h1>Explore this AI tool</h1><p>This interactive tool overview needs JavaScript to show the selected information. If it does not open, you can use the <a href="/top-100/">full directory</a> or read the <a href="/tools/deepseek/">DeepSeek overview</a> without JavaScript.</p><a class="detail-primary" href="/top-100/">Browse AI tools →</a></div></section>
     </div></div>
     <div id="detail-content" class="shell detail-content"></div>
   </main>
   <footer class="footer"><div class="shell footer-inner"><div><a class="brand" href="/"><span class="brand-icon" aria-hidden="true">✳</span><span>AI<span class="brand-muted">Tools</span>Hub<span class="brand-dot">.</span></span></a><p>An independent AI discovery directory and a small collection of practical tools.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/top-100/">Top 100</a><a href="/#free-tools">Free tools</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a></nav></div><div class="shell footer-bottom">© 2026 AI Tools Hub. Independent directory; not affiliated with listed providers. <span>Read our <a href="/privacy/">privacy notice</a>.</span></div></footer>
+<script>
+// If a required script fails, never leave an indefinite loading screen.
+window.addEventListener('load', function() {
+  const fallback=document.getElementById('tool-fallback');
+  if(fallback) fallback.insertAdjacentHTML('afterbegin','<p class="detail-error">Could not load the interactive profile. Please refresh or choose another overview below.</p>');
+});
+</script>
 </body>
 </html>

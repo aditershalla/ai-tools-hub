@@ -40,3 +40,13 @@ The Top 100 list is a **curated editorial selection**, not a measured global mar
 - Google AdSense suitability: https://support.google.com/adsense/answer/7299563
 - Google Publisher Policies: https://support.google.com/adsense/answer/10502938
 - Google CMP requirements: https://support.google.com/adsense/answer/13554116
+
+## V6 review — Contact, Privacy clarity, tool profiles
+
+- Contact: removed editorial/operator instructions. No email is published without an approved address; public GitHub Issues are kept for non-sensitive bug reports.
+- Privacy: remains prominently labeled **Draft**. Revised copy distinguishes code-observed processing (six browser-local tools; Workers AI prompt submission and error handling) from unverified Cloudflare dashboard settings (bindings, analytics, logs, retention). A real operator identity, jurisdiction and private contact email are still required; do not call this a finalized legal policy.
+- Dynamic tool pages: replaced the indefinite “Loading tool information...” placeholder with a real HTML fallback. An error boundary shows a clear message if a required script fails. Historic `tool.html?tool=deepseek` and other featured slugs redirect in browsers to dedicated static profiles.
+- DeepSeek: added an HTML-first `/tools/deepseek/` profile with practical examples, caveats, source links and a canonical URL. Added it to sitemap and card routing.
+- Content: added concrete illustrative tasks and verification tips to eight featured tool guides. No hands-on test claims.
+- Tests before publication: previous core UI 81/81 passed, 101/101 focused dynamic-profile browser DOM assertions passed, 519/519 static links/SEO/mobile checks passed. Chromium tests use local HTML and JS; no live-network backend calls were made. Cloudflare Preview deployment, live third-party links, real Workers AI behavior, and real Cloudflare dashboard retention/settings must be verified separately.
+- Keep in a preview branch; no changes to main until owner approval. No paid services added.
