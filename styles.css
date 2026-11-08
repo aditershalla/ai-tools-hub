@@ -451,3 +451,171 @@ html{scroll-padding-top:95px}
 @media(max-width:740px){.discovery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.discovery-guides{padding:22px}.newsletter-panel{padding:44px 27px}.discovery-section,.ai-insights-section,.chat-compare-section{padding-top:64px;padding-bottom:69px}.compare-table{min-width:820px}.discovery-guides-head{align-items:flex-start;flex-direction:column}}
 @media(max-width:480px){.discovery-grid{gap:10px}.discovery-card{min-height:164px;padding:17px 14px 13px;border-radius:14px}.discovery-card-name{font-size:12px}.discovery-card-desc{font-size:10px}.discovery-symbol{width:36px;height:36px;font-size:18px}.discovery-card-bottom{padding-top:7px;font-size:10px}.discovery-card-bottom strong{font-size:12px}.ai-insights-grid{grid-template-columns:1fr}.ai-insight-card{padding:22px}.newsletter-panel{padding:37px 17px 30px;border-radius:20px}.newsletter-panel h2{font-size:33px;letter-spacing:-1.5px}.newsletter-lead{font-size:13px}.newsletter-fields{flex-direction:column}.newsletter-fields button{min-height:45px}.newsletter-fields input{min-height:45px;font-size:16px}.newsletter-foot{justify-content:flex-start}.compare-meta{font-size:11px}.compare-table th:first-child{width:158px}}
 @media(prefers-reduced-motion:reduce){.discovery-card,.ai-insight-card,.newsletter-fields button{transition:none!important;transform:none!important}}
+
+
+/* V10 — focused hero update: seamless two-row AI brand showcase. */
+.hero-stage .hero-art.hero-logo-showcase {
+  --hero-logo-gap: 14px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+  height: 505px;
+  padding: 32px 0;
+  overflow: hidden;
+  border-radius: 26px;
+  background: transparent;
+}
+.hero-logo-showcase::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 20% 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(151, 136, 255, .20), rgba(233, 225, 255, .12) 40%, transparent 76%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+.hero-logo-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 136px;
+  flex: 0 0 136px;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.hero-logo-track,
+.hero-logo-set {
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: max-content;
+  gap: var(--hero-logo-gap);
+}
+.hero-logo-track { transform: translate3d(0, 0, 0); }
+.hero-logo-showcase.is-ready .hero-logo-row--left .hero-logo-track {
+  animation: hero-logos-left 55s linear infinite;
+}
+.hero-logo-showcase.is-ready .hero-logo-row--right .hero-logo-track {
+  animation: hero-logos-left 57s linear infinite reverse;
+}
+@keyframes hero-logos-left {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-50% - 7px), 0, 0); }
+}
+.hero-logo-row:hover .hero-logo-track { animation-play-state: paused !important; }
+.hero-logo-row:focus-within {
+  overflow-x: auto;
+  -webkit-mask-image: none;
+  mask-image: none;
+  scrollbar-width: thin;
+  scrollbar-color: #cec4f9 transparent;
+}
+.hero-logo-row:focus-within .hero-logo-track {
+  animation: none !important;
+  transform: none !important;
+}
+.hero-logo-link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 84px;
+  width: 84px;
+  height: 86px;
+  border-radius: 20px;
+  border: 1px solid rgba(226, 219, 255, .92);
+  background: linear-gradient(155deg, rgba(255,255,255,.96), rgba(249,247,255,.91));
+  box-shadow: 0 10px 25px rgba(88, 68, 170, .09), 0 2px 6px rgba(90, 67, 187, .04);
+  transition: transform .20s ease, box-shadow .20s ease, border-color .20s ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero-logo-link:hover,
+.hero-logo-link:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(132, 110, 250, .78);
+  box-shadow: 0 14px 31px rgba(106, 82, 220, .20), 0 0 17px rgba(129, 111, 255, .22);
+  z-index: 2;
+}
+.hero-logo-link:focus-visible {
+  outline: 3px solid #5d45eb;
+  outline-offset: 2px;
+}
+.hero-logo-icon.brand-logo {
+  width: 57px;
+  height: 57px;
+  border: none;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: none;
+}
+.hero-logo-icon .brand-logo-img { width: 80%; height: 80%; }
+.hero-logo-icon .brand-logo-fallback { font-size: 28px; }
+.hero-logo-tooltip {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  z-index: 4;
+  transform: translate(-50%, -3px);
+  padding: 4px 8px;
+  border: 1px solid rgba(196, 184, 252, .72);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .98);
+  color: #463c8f;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(84,70,156,.13);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.hero-logo-link:hover .hero-logo-tooltip,
+.hero-logo-link:focus-visible .hero-logo-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.hero-logo-row:focus-within .hero-logo-copy { display: none; }
+@media (max-width: 850px) {
+  .hero-stage .hero-art.hero-logo-showcase {
+    height: 260px;
+    max-width: 650px;
+    gap: 0;
+    margin: 4px auto 0;
+    padding: 8px 0;
+  }
+  .hero-logo-row { height: 115px; flex-basis: 115px; }
+  .hero-logo-link { flex-basis: 77px; width: 77px; height: 79px; border-radius: 18px; }
+  .hero-logo-icon.brand-logo { width: 51px; height: 51px; }
+}
+@media (max-width: 580px) {
+  .hero-stage .hero-art.hero-logo-showcase { height: 212px; max-width: 100%; margin-top: 10px; padding: 4px 0; gap: 0; border-radius: 18px; }
+  .hero-logo-row { height: 98px; flex-basis: 98px; }
+  .hero-logo-link { flex-basis: 65px; width: 65px; height: 66px; border-radius: 15px; }
+  .hero-logo-icon.brand-logo { width: 43px; height: 43px; border-radius: 12px; }
+  .hero-logo-icon .brand-logo-fallback { font-size: 22px; }
+  .hero-logo-tooltip { font-size: 9px; bottom: -21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-showcase.is-ready .hero-logo-row .hero-logo-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .hero-logo-row {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: thin;
+  }
+  .hero-logo-copy { display: none; }
+  .hero-logo-link,.hero-logo-tooltip { transition: none !important; }
+}
