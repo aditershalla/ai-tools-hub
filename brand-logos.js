@@ -4,7 +4,8 @@
 const logoEscape = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 function officialHost(url){try {const u=new URL(url);return u.protocol==='https:'?u.hostname.replace(/^www\./,''):'';} catch{return '';}}
 function toolSlug(name){return String(name).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
-function toolDetailsUrl(item){return '/tool.html?tool='+encodeURIComponent(toolSlug(item.name));}
+const staticProfileSlugs=new Set(["chatgpt", "claude", "gemini", "perplexity", "midjourney", "canva", "runway", "elevenlabs", "cursor", "gamma", "notebooklm", "adobe-firefly"]);
+function toolDetailsUrl(item){const s=toolSlug(item.name);return staticProfileSlugs.has(s)?'/tools/'+encodeURIComponent(s)+'/':'/tool.html?tool='+encodeURIComponent(s);}
 function brandLogoMarkup(item, extraClass=''){
  const domain=officialHost(item.url);
  const main=domain?'https://www.google.com/s2/favicons?domain='+encodeURIComponent(domain)+'&sz=128':'';

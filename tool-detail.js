@@ -41,7 +41,7 @@ function renderDetail(){
  const item=tools.find(t=>toolSlug(t.name)===requested);
  const hero=document.getElementById('detail-hero');
  const content=document.getElementById('detail-content');
- document.getElementById('detail-year').textContent=new Date().getFullYear();
+ const detailYear=document.getElementById('detail-year');if(detailYear)detailYear.textContent=new Date().getFullYear();
  if(!item){document.title='Tool not found | AI Tools Hub';hero.innerHTML=`<div class="detail-missing"><h1>We couldn’t find that tool.</h1><p>Explore the full directory to discover AI products for your next project.</p><a class="detail-primary" href="/#top-100">Browse Top 100 →</a></div>`;content.innerHTML='';return;}
  const slug=toolSlug(item.name);
  const notes=featuredNotes[slug]||{};
