@@ -72,3 +72,10 @@ The 100 tools are a **curated editorial selection**, not a measured top-100 usag
 - The robot is a decorative, optimized, self-hosted WebP illustration under `assets/robot-background.webp`. The overlay remains selectable text, functional form fields, and clickable cards — no full-page screenshot background.
 - The glass metric strip is built from HTML, CSS and inline SVG. It shows **100 curated picks, 12 featured tools, 7 workspace tools** (counts updated by `app.js`) and **Free to browse & discover**. These are site counts, not unverified ratings or visitor figures.
 - If you uploaded version 2, upload/commit all changed files including the `assets` folder; Cloudflare Pages should redeploy on new commits when Git integration is connected.
+
+## V4 — tool logos, hover glow and overview pages
+
+- Tool logos use public website favicons, loaded from the providers' official domains via Google favicon service. DuckDuckGo favicon service is tried if a request fails; otherwise an initial-letter fallback appears. No API key or paid CDN is required.
+- Every card in Top 100 and Featured Directory opens its own overview URL such as `/tool.html?tool=chatgpt`; "Official site" buttons open the providers directly.
+- Profiles are independent, practical editorial summaries with possible use cases, strengths, cautions, a visit button and alternatives. **No fabricated user reviews, ratings, usage figures, or affiliate claims.**
+- All changes are static assets and work on the free Cloudflare Pages setup already configured.
