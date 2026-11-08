@@ -830,3 +830,110 @@ html[data-theme="dark"] :is(.tool-workspace h3,.directory-card h3,.top100-card h
 html[data-theme="dark"] :is(.discovery-card,.compare-panel,.guide-feature,.step-card,.catalog-row,.info-hero,.detail-panel,.detail-side-card) a:hover {color:#c5b4ff}
 html[data-theme="dark"] :focus-visible {outline-color:#c5adff}
 
+/* V13 — Dark-mode quality pass: transparent section kickers and a neon-lit robot.
+   These rules are scoped to dark mode. Light mode keeps its existing appearance. */
+html[data-theme="dark"] .hero-stage {
+  background:
+    radial-gradient(ellipse 42% 56% at 55% 40%, rgba(92, 57, 198, .25), transparent 83%),
+    radial-gradient(ellipse 25% 37% at 69% 31%, rgba(75, 133, 219, .13), transparent 80%),
+    radial-gradient(ellipse 36% 50% at 95% 73%, rgba(96, 74, 172, .15), transparent 83%),
+    linear-gradient(180deg, #0c1022 0%, #12172e 88%, #12172b 100%);
+}
+/* The original white/lavender source image is kept for Light mode. */
+.hero-robot .hero-robot-neon { display: none; }
+html[data-theme="dark"] .hero-robot {
+  opacity: .94;
+  mix-blend-mode: normal;
+  filter: none;
+  isolation: isolate;
+}
+html[data-theme="dark"] .hero-robot > img:not(.hero-robot-neon) { display: none; }
+html[data-theme="dark"] .hero-robot > .hero-robot-neon {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(151, 102, 255, .35)) drop-shadow(0 0 34px rgba(77, 107, 252, .18));
+}
+html[data-theme="dark"] .hero-robot::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 10% -12% 10% -18%;
+  background: radial-gradient(ellipse at 56% 40%, rgba(133, 75, 237, .34), rgba(63, 95, 180, .13) 38%, transparent 72%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+/* Section kickers are typographic labels, NOT full-width pills.
+   V12 inadvertently gave every .section-kicker a full-width purple background. */
+html[data-theme="dark"] .section-kicker {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: #c6b7ff;
+  line-height: 1.55;
+}
+/* Keep headings completely visible and legible across narrow viewports. */
+html[data-theme="dark"] :is(.section-heading h2, .info-hero h1, .guide-index-hero h1) {
+  overflow: visible;
+  line-height: 1.25;
+  padding-bottom: .08em;
+  color: #f1f3ff;
+  text-shadow: none;
+}
+html[data-theme="dark"] .section-heading h2 span { color: #b9a5ff; }
+html[data-theme="dark"] .top100-heading { overflow: visible; }
+html[data-theme="dark"] :is(.section-heading p, .top100-note p, .top100-count-note, .research-note) {
+  color: #bdc6df;
+}
+/* Separate headings and actual controls that use lavender/grey text on light cards. */
+html[data-theme="dark"] :is(.workspace-header, .workspace-content, .workspace-panel, .tool-workspace, .top100-section, .directory-section) {
+  color: #f1f3ff;
+}
+html[data-theme="dark"] :is(.top100-card .top100-category, .directory-card .card-category, .top100-heading .top100-count) {
+  color: #d0c3ff;
+}
+html[data-theme="dark"] :is(.directory-search, .hero-search, .top100-search, .catalog-input, .tool-textarea, .tool-input, .tool-select, .output-box, #contact-form textarea) {
+  color: #f3f5ff;
+}
+html[data-theme="dark"] :is(.directory-card h3, .top100-card h3, .ai-insight-card h3, .step-card h3, .guide-feature h3, .discovery-guides-head h3) {
+  color: #f4f4ff;
+}
+html[data-theme="dark"] .ai-insights-heading .section-heading h2,
+html[data-theme="dark"] .top100-heading h2 {
+  line-height: 1.24;
+  padding-bottom: .10em;
+}
+/* Ensure metadata, helper labels and support actions aren't washed out. */
+html[data-theme="dark"] :is(.top100-card .top100-description, .directory-card p, .workspace-description, .tool-description, .compare-meta p, .insight-explanation, .discovery-card-desc) {
+  color: #bec6de;
+}
+html[data-theme="dark"] :is(.compare-sources a, .insight-actions a, .detail-panel a, .info-hero a:not(.detail-primary):not(.detail-secondary)) {
+  color: #d3c7ff;
+}
+html[data-theme="dark"] .top100-card .top100-rank,
+html[data-theme="dark"] .catalog-row .catalog-badge { color: #c6b6ff; }
+@media (max-width: 850px) {
+  html[data-theme="dark"] .hero-robot {
+    opacity: .42;
+    mix-blend-mode: screen;
+  }
+  html[data-theme="dark"] .hero-robot > .hero-robot-neon {
+    filter: drop-shadow(0 0 14px rgba(130, 99, 246, .16));
+  }
+  html[data-theme="dark"] .hero-robot::before { opacity: .55; }
+}
+@media (max-width: 580px) {
+  html[data-theme="dark"] .hero-robot { opacity: .34; }
+  html[data-theme="dark"] :is(.section-heading h2, .info-hero h1) { line-height: 1.26; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] .hero-robot > .hero-robot-neon { transition: none; }
+}
+/* Keep the existing five-product comparison inside its own horizontal scrollport.
+   This guard applies to both themes and prevents narrow screens from gaining page-wide overflow. */
+.compare-panel { max-width: 100%; min-width: 0; overflow: hidden; }
+.compare-scroll { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+
