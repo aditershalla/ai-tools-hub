@@ -61,6 +61,12 @@ const verifiedPricing = {
     "source": "https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans",
     "note": "Paid subscriptions for Midjourney web / Discord; separate limited mobile-app trial",
     "checked": "2026-11-08"
+  },
+  "agent-qa": {
+    "type": "free",
+    "source": "https://vostride.com/pricing.md",
+    "note": "Free software for permitted FSL-1.1-ALv2 use; competing-use restrictions and separate model/infrastructure costs.",
+    "checked": "2026-11-08"
   }
 };
 function planFor(item){const name=typeof item==='string'?item:item.name;return verifiedPricing[String(name).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')]||null;}

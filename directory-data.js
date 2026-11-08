@@ -12,5 +12,6 @@ const directoryTools = [
   {id:'cursor',name:'Cursor',category:'Coding',description:'Work with an AI-powered coding editor and developer tools.',url:'https://cursor.com/',mark:'⌁',color:'#eaf0ff',ink:'#4442af'},
   {id:'gamma',name:'Gamma',category:'Presentations',description:'Build presentations and visual documents with AI.',url:'https://gamma.app/',mark:'γ',color:'#f1eaff',ink:'#8a59d7'},
   {id:'notebooklm',name:'NotebookLM',category:'Research',description:'Explore and summarize information from your own source material.',url:'https://notebooklm.google.com/',mark:'N',color:'#eaf5ff',ink:'#4c85d3'},
-  {id:'firefly',name:'Adobe Firefly',category:'Images',description:'Generate and edit visual content with Adobe creative AI.',url:'https://firefly.adobe.com/',mark:'✸',color:'#ffede7',ink:'#ef603f'}
+  {id:'firefly',name:'Adobe Firefly',category:'Images',description:'Generate and edit visual content with Adobe creative AI.',url:'https://firefly.adobe.com/',mark:'✸',color:'#ffede7',ink:'#ef603f'},
+  {"id":"agent-qa","name":"agent-qa","category":"Coding","description":"Natural-language web/mobile QA with persistent memidex memory, validated self-improvement and recorded evidence.","url":"https://vostride.com","mark":"a","color":"#eff0ff","ink":"#7864dd"}
 ];
